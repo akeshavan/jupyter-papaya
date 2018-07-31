@@ -63,7 +63,7 @@ const extension: JupyterLabPlugin<void> = {
     // Add an application command
     const command: string = 'papaya:open';
     app.commands.addCommand(command, {
-      label: 'papaya viewer',
+      label: 'New Papaya Viewer',
       execute: () => {
         if (!widget.isAttached) {
           // Attach the widget to the main work area if it's not there
@@ -75,7 +75,7 @@ const extension: JupyterLabPlugin<void> = {
     });
 
     // Add the command to the palette.
-    palette.addItem({command, category: 'Tutorial'});
+    palette.addItem({command, category: 'Papaya Image Viewer'});
   }
 };
 
