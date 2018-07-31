@@ -5,12 +5,13 @@ import {
   ICommandPalette
 } from '@jupyterlab/apputils';
 import '../style/index.css';
+import '../style/papaya.css';
 import {
   Widget
 } from '@phosphor/widgets';
 
 
-//declare var papaya: any;
+declare var papaya: any;
 //declare var require: any
 //var papaya = require('./papaya');
 
@@ -31,9 +32,20 @@ const extension: JupyterLabPlugin<void> = {
     widget.title.label = 'papaya.js';
     widget.title.closable = true;
 
+    // AK's hack:
+    var s = document.createElement('script');
+    s.type = 'text/javascript';
+    s.src = 'https://cdn.rawgit.com/rii-mango/Papaya/67d9734a/release/current/standard/papaya.js'; //'https://cdn.rawgit.com/rii-mango/Papaya/67d9734a/release/current/nojquery/papaya.js';
+    s.onload = () => {
+      console.log('papaya object', papaya);
+      papaya.Container.addViewer('papaya', {});
+    };
+    widget.node.appendChild(s);
+
     // Add an image element to the panel
     let pdiv = document.createElement('div');
     pdiv.classList.add("papaya");
+    pdiv.id = "papaya";
     widget.node.appendChild(pdiv);
 
     // Fetch info about a random comic
