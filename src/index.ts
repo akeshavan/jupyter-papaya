@@ -44,6 +44,7 @@ const extension: JupyterLabPlugin<void> = {
 
     // Add an image element to the panel
     let pdiv = document.createElement('div');
+    pdiv.style.height = "0px";
     pdiv.classList.add("papaya");
     pdiv.id = "papaya";
     widget.node.appendChild(pdiv);
